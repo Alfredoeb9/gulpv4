@@ -1,8 +1,6 @@
 const gulp = require('gulp'),
     sass = require('gulp-sass'),
     postcss = require('gulp-postcss'),
-    // autoprefixer = require('gulp-autoprefixer'),
-    // cssnano = require('gulp-cssnano'),
     autoprefixer = require('autoprefixer'),
     cssnano = require('cssnano'),
     gulpCopy = require('gulp-copy'),
