@@ -23,7 +23,7 @@ Web Environment with Gulp 4
 npm install
 ```
 
-**Update the node packages** - On the root of this project run this on your terminal 
+**Update the node packages(this may not be needed with glp 4)** - On the root of this project run this on your terminal 
 (yarn is perfectly fine as well)
 
 ```
