@@ -4,7 +4,7 @@ const gulp = require('gulp'),
     autoprefixer = require('autoprefixer'),
     cssnano = require('cssnano'),
     gulpCopy = require('gulp-copy'),
-    // imageMin = require('gulp-imagemin'),
+    imageMin = require('gulp-imagemin'),
     cleanCSS = require('gulp-clean-css'),
     // sourcemaps = require('gulp-sourcemaps'),
     uglifyJs = require('gulp-uglify'),
@@ -86,7 +86,7 @@ const clean = () => del(['dist']);
         .pipe(gulp.dest(paths.pdf.dest))
  }
 
- function scripts() {
+ function scripts(done) {
      return gulp.src(paths.scripts.src
         // , {sourcemaps:true }
         )
@@ -97,11 +97,12 @@ const clean = () => del(['dist']);
          .pipe(uglifyJs())
         //  .pipe(concat('index.min.js'))
 
-    .pipe(gulp.dest('./src/js'))
+    .pipe(gulp.dest('./src/js')),
+    done()
  }
 
  function styles() {
-     var plugins = [
+     let plugins = [
          autoprefixer(
              {browsers: ['last 2 version']}
              ),
@@ -121,6 +122,7 @@ const clean = () => del(['dist']);
 
  function images() {
      return gulp.src(paths.images.src)
+        
         .pipe(gulp.dest('src/img'));
  }
  
@@ -160,10 +162,11 @@ const clean = () => del(['dist']);
      gulp.watch(paths.styles.src, styles).on('change', gulp.series(clean, styles, reload))
  }
 
- function watchScripts() {
-     console.log("Watching: " + paths.scripts.src);
-     gulp.watch(paths.scripts.src, scripts).on('change', gulp.series(clean, scripts, reload))
- }
+ function watchScripts(done) {
+        console.log("Watching: " + paths.scripts.src);
+        gulp.watch(paths.scripts.src, scripts).on('change', gulp.series(clean, scripts, reload))
+        done();
+}
 
  gulp.task('watch', gulp.parallel(clean, watchHtml, watchStyles, watchScripts, serve));
 
@@ -202,6 +205,13 @@ gulp.task('scripts:prod', function() {
 gulp.task('images:prod', function() {
     return gulp.src(paths.images.src)
         // .pipe(cache(imageMin()))
+        .pipe(imageMin({ 
+            interlaced: true,
+            progressive: true,
+            optimizationLevel: 5 
+        }, {
+            verbose: true
+        }))
         .on('error', function(e) { console.log(e); })
         .pipe(gulp.dest(paths.images.dest));
 });
@@ -241,4 +251,4 @@ gulp.task('all:prod', gulp.parallel(
 gulp.task('build:prod', gulp.series(clean, 'all:prod'));
 
 //  Default Task
-gulp.task('default', gulp.series('build', 'watch'))
+gulp.task('default', gulp.parallel('build', 'watch'))
