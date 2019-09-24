@@ -1,9 +1,9 @@
 # gulpv4
 Web Environment with Gulp 4 
 
-# gulp-Kit-2018
+# gulp-Kit-2019
  This was built for new web developers or developers who want to try gulp instead of webpack. With these files you will be able to focus on the code and less time on configuring your environment.
- Below is a step by step entry to get started with the Gulp-Kit-2018.
+ Below is a step by step entry to get started with the Gulp-Kit-2019.
  
  ## Steps
 **Download or Clone Repo** - At the top of this page in a green tab click to clone or download
