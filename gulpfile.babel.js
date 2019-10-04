@@ -112,6 +112,7 @@ const clean = () => del(['dist']);
             outputStyle: 'compressed'
         })
         .on('error', sass.logError))
+
         .pipe(postcss(plugins))
         // .pipe(sourcemaps.write())
         .pipe(gulp.dest(paths.styles.dest))
