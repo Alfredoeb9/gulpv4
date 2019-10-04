@@ -46,3 +46,9 @@ gulp build:prod
 ```
 
 Hope you enjoy this Web-Kit and Happy Coding everyone!
+
+
+**TO DO's**
+[x] - Move Browserslist to package.json
+[] - Update image optimization 
+[] - Clean up code
