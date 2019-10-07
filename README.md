@@ -50,5 +50,6 @@ Hope you enjoy this Web-Kit and Happy Coding everyone!
 
 **TO DO's**
 [x] - Move Browserslist to package.json
-[] - Update image optimization 
+[x] - Update image optimization 
+[] - Set-up cache for images
 [] - Clean up code
