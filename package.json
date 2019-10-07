@@ -14,7 +14,10 @@
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.1.2",
-    "@babel/preset-env": "^7.1.0"
+    "@babel/preset-env": "^7.1.0",
+    "imagemin-jpegtran": "^6.0.0",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-pngquant": "^8.0.0"
   },
   "devDependencies": {
     "@babel/register": "^7.0.0",
