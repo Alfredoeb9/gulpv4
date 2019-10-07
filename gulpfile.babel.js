@@ -5,6 +5,10 @@ const gulp = require('gulp'),
     cssnano = require('cssnano'),
     gulpCopy = require('gulp-copy'),
     imageMin = require('gulp-imagemin'),
+    imageminPngquant = require('imagemin-pngquant'),
+    imageminjpegtran = require('imagemin-jpegtran'),
+    // imageminPngquant = require('imagemin-pngquant'),
+    imageminMozjpeg = require('imagemin-mozjpeg'),
     cleanCSS = require('gulp-clean-css'),
     // sourcemaps = require('gulp-sourcemaps'),
     uglifyJs = require('gulp-uglify'),
@@ -204,7 +208,19 @@ gulp.task('scripts:prod', function() {
 gulp.task('images:prod', function() {
     return gulp.src(paths.images.src)
         // .pipe(cache(imageMin()))
-        .pipe(imageMin({ 
+        .pipe(imageMin([
+            //png
+            imageminPngquant({
+                speed: 1,
+                quality: [.85, 1]
+            }),
+            imageminjpegtran({
+                progressive: true
+            }),
+            imageminMozjpeg({
+                quality: 85
+            })
+        ],{ 
             interlaced: true,
             progressive: true,
             optimizationLevel: 5 
