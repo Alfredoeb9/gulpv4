@@ -7,7 +7,6 @@ const gulp = require('gulp'),
     imageMin = require('gulp-imagemin'),
     imageminPngquant = require('imagemin-pngquant'),
     imageminjpegtran = require('imagemin-jpegtran'),
-    // imageminPngquant = require('imagemin-pngquant'),
     imageminMozjpeg = require('imagemin-mozjpeg'),
     cleanCSS = require('gulp-clean-css'),
     // sourcemaps = require('gulp-sourcemaps'),
@@ -174,7 +173,8 @@ const clean = () => del(['dist']);
  gulp.task('watch', gulp.parallel(clean, watchHtml, watchStyles, watchScripts, serve));
 
 
-//  Production Specific Tasks
+
+//  PRODUCTION SPECIFIC TASKS
 
 gulp.task('styles:prod', function () {
     var sassStream = gulp.src(paths.styles.prod)
@@ -189,7 +189,7 @@ gulp.task('scripts:prod', function() {
     var jsStream = gulp.src(paths.scripts.src);
 
     return merge(jsStream) 
-        // .pipe(sourcemaps.init())
+        // .pipe(sourcemaps.init())             //  Enable for sourcemaps on production
         // .pipe(concat('all.min.js'))
         
         .pipe(babel({
@@ -197,7 +197,7 @@ gulp.task('scripts:prod', function() {
         }))
         .pipe(concat('all.min.js'))             //  Makes all JavaScript files into one
         .pipe(uglifyJs())                       //  Minify all JavaScript Files
-        // .pipe(sourcemaps.write("."))
+        // .pipe(sourcemaps.write("."))         //  Enable for sourcemaps on production
         .pipe(gulp.dest(paths.scripts.dest))
 })
 
